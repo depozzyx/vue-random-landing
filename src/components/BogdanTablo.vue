@@ -3,8 +3,11 @@
         <!-- <div style = 'position: fixed;'>
             {{scrollP}}
         </div> -->
-        <div class="rect"></div>
-        <div class = 'debug-el' :style="{marginTop: scrollP - 52 + '% !important', position: 'fixed'} " >
+        <div class="rect" :style="{top: 'calc('+scrollPx * 0.4 + 'px + 50%)'} ">{{scrollPx}}</div>
+        <div class="rect2" :style="{top: 'calc('+scrollPx * 0.3 + 'px + 10%)'} ">{{scrollPx}}</div>
+        <IguanaShape :style="{top: 'calc('+scrollPx * 0.3 + 'px + 10%)'}" />
+
+        <div :style="{marginTop: scrollPx * 0.9 + 'px', position: 'absolute'} " >
             <h1>{{title}}</h1>
         </div>
         <div>
@@ -14,13 +17,19 @@
 </template>
 
 <script>
+import IguanaShape from "@/components/IguanaShape.vue";
+
 export default {
     name: "BogdanTablo",
     data () {
         return {
-            scrollP: '100% !important',
+            scrollP: 0,
+            scrollPx: 0,
             // items: ['a', 'b', 'c']
         }
+    },
+    components: {
+        IguanaShape
     },
     props: {
         // data: {
@@ -53,6 +62,8 @@ export default {
     },
     methods: {
         handleScroll() {
+            this.scrollPx = window.scrollY
+
             let d = this.$el.clientHeight - window.scrollY
             let m = d / (window.innerHeight / 100)
             // console.log(m)
@@ -82,20 +93,29 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #fff;
         width: 100%;
     }
     #root .rect{
         position: absolute;
-        top: 5%;
-        height: 10%;
+        height: 2%;
         width: 25%;
-        left: 5%;
-        background: red;
+        left: 40%;
+        background: rgba(255, 125, 19, 0.67)
+    }
+    #root .rect2{
+        position: absolute;
+        height: 10%;
+        width: 10%;
+        left: 10%;
+        background: rgba(255, 19, 203, 0.67)
     }
     #root div h1{
         font-weight: 900;
         font-size: 500%;
+        float: none;
+    }
+    #root div p{
+        float: none;
     }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
