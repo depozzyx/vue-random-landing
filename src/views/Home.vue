@@ -1,69 +1,17 @@
 <template>
-	<div class="home md-layout md-gutter">
-		<div class="col-sm-4"></div>
-		<div class="col-sm-4 d-flex align-items-center min-vh-100">
-			<div style = "width: 100%;" >
-				<div class="p-2 d-flex justify-content-center">
-					<span class="md-display-2">My todo list</span>
-				</div>
-
-
-				<md-content style = "overflow-y: scroll; max-height: 300px; width: 50%; margin-left: 25%;" class="md-scrollbar">
-					<md-list>
-						<!-- <md-subheader>Current todos</md-subheader> -->
-						
-						<md-list-item v-for="(item, index) in todoTitles" :key = "index">
-							<md-checkbox v-model="todoChecked" @change = "updateTodoClicked" :value="index" />
-							<span class="md-list-item-text"> {{item}}</span>
-						</md-list-item>
-					</md-list>
-				</md-content>
-					
-				<!-- {{todoChecked}}
-				{{todo}} -->
-				<br>
-				<md-divider style='margin-left: 25%; width: 50%;'></md-divider>
-
-			</div>
-				
-		</div>
-		<div class="col-sm-4 d-flex align-items-center min-vh-100">
-			<div style = "width: 50%; margin-left: 25%;">
-				<md-card style = 'overflow: hidden; margin-bottom: 30px;' class="md-layout-item md-size-100 md-small-size-100">
-					<md-card-header>
-						<div class="md-title">Add todo</div>
-					</md-card-header>
-
-					<md-card-content>
-						<md-field :class="messageClass">
-							<label>Todo text</label>
-							<md-textarea @change = "checkError" required v-model="todoText" md-autogrow></md-textarea>
-							<span class="md-error">Field is required. Remove all "//" expressions.</span>
-						</md-field>
-						<md-button @click = 'addTodo' style = 'float: right;' class="md-fab md-primary md-mini"><md-icon>add</md-icon></md-button>
-					</md-card-content>
-				</md-card>
-				<md-card style = 'overflow: hidden;' class="md-layout-item md-size-100 md-small-size-100">
-					<md-card-header>
-						<div class="md-title">Help</div>
-					</md-card-header>
-
-					<md-card-content>
-						You will get no help
-					</md-card-content>
-				</md-card>
-			</div>
-		</div>
-		
+	<div id = 'root'>
+		<BogdanTablo title = 'Bogdan.Info' isFixed/>
+		<!-- <BogdanTablo title = 'Bogdan.Info' isPlaceholder /> -->
+		<OlegDiv title = 'Bogdan.Info'/>
+		<OlegDiv title = 'Bogdan.Info'/>
 	</div>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-// import Bogdan from "@/components/Bogdan.vue";
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
+import BogdanTablo from "@/components/BogdanTablo.vue";
+import OlegDiv from "@/components/OlegDiv.vue";
 
 function getCookie(name) {
 	const value = `; ${document.cookie}`;
@@ -74,6 +22,8 @@ function getCookie(name) {
 export default {
 	name: "Home",
 	components: {
+		BogdanTablo,
+		OlegDiv
 		// md-display-3
 		// HelloWorld,
 		// Bogdan
@@ -96,7 +46,7 @@ export default {
 				}
 			}
         }
-		
+
 	},
 	data: () => ({
 		notification: [],
@@ -165,7 +115,9 @@ export default {
 <style scoped>
 	.home{
 		height: 100%;
-
+	}
+	#root{
+		height: 100%;
 	}
 	md-layout-item{
 		height: 100%;
